@@ -1,0 +1,23 @@
+source:
+  type: airflow
+  serviceName: airflow
+  serviceConnection:
+    config:
+      type: Airflow
+      hostPort: http://webserver:8080
+      username: airflow
+      password: airflow
+      connection:
+        type: airflow
+  sourceConfig:
+    config:
+      includeLineage: true
+sink:
+  type: metadata-rest
+  config:
+    apiEndpoint: http://openmetadata-server:8585/api
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://openmetadata-server:8585/api
+    authProvider: no-auth

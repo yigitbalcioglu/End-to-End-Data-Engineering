@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# Logs / backups
+*.log
+*.sql
+*.dump
+
+# OS
+.DS_Store

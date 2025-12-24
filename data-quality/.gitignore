@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# dbt
+target/
+dbt_packages/
+
+# Great Expectations
+.great_expectations/
+great_expectations/uncommitted/
+
+# OS
+.DS_Store

@@ -1,0 +1,12 @@
+data_quality:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: ${DEST_POSTGRES_HOST:-localhost}
+      user: ${DEST_POSTGRES_USER:-postgres}
+      password: ${DEST_POSTGRES_PASSWORD:-postgres}
+      port: ${DEST_POSTGRES_PORT:-5434}
+      dbname: ${DEST_POSTGRES_DB:-postgres}
+      schema: staging
+      threads: 4

@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# Kafka / logs
+kafka_data/
+pg_data/
+
+# OS
+.DS_Store

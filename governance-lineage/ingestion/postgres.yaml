@@ -1,0 +1,23 @@
+source:
+  type: postgres
+  serviceName: dest-postgres
+  serviceConnection:
+    config:
+      type: Postgres
+      hostPort: destination_postgres:5434
+      username: postgres
+      password: postgres
+      database: postgres
+      sslMode: disable
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+sink:
+  type: metadata-rest
+  config:
+    apiEndpoint: http://openmetadata-server:8585/api
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://openmetadata-server:8585/api
+    authProvider: no-auth

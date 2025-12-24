@@ -1,0 +1,12 @@
+name: data_quality_demo
+version: 1.0.0
+config-version: 2
+profile: data_quality
+model-paths: ["models"]
+target-path: target
+clean-targets: ["target", "dbt_packages"]
+models:
+  data_quality_demo:
+    staging:
+      +schema: staging
+      +materialized: view

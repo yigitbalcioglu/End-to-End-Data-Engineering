@@ -1,3 +1,19 @@
 
-__pycache__
+__pycache__/
+.venv/
+.env*
+node_modules/
+logs/
+*.log
+*.tmp
+build/
+dist/
+.gradle/
+.yarn/
+packages/
+**/node_modules/
+**/.gradle/
+**/build/
+**/dist/
+**/.cache/
 

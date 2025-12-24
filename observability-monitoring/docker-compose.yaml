@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.50.1
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:10.2.3
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+
+  node-exporter:
+    image: prom/node-exporter:v1.6.1
+    ports:
+      - "9100:9100"
+
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.15.0
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:postgres@destination_postgres:5434/postgres?sslmode=disable
+    ports:
+      - "9187:9187"
+    depends_on:
+      - prometheus
+
+  kafka-exporter:
+    image: bitnami/kafka-exporter:1.7.0
+    environment:
+      - KAFKA_BROKERS=kafka:9092
+    ports:
+      - "9308:9308"
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana_data:

@@ -1,0 +1,14 @@
+name: orders_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: "%Y%m%d-%H%M%S-orders"
+validations:
+  - batch_request:
+      datasource_name: dest_postgres
+      data_connector_name: default_runtime_data_connector
+      data_asset_name: orders
+      runtime_parameters:
+        query: "select * from public.orders"
+      batch_identifiers:
+        default_identifier: "manual_run"
+    expectation_suite_name: orders_suite

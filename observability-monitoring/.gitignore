@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# Grafana/Prometheus data
+prometheus/data/
+grafana_data/
+
+# OS
+.DS_Store

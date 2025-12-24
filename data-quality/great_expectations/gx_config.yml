@@ -1,0 +1,29 @@
+# Minimal Great Expectations config; run `great_expectations init` to expand.
+config_version: 3.0
+plugins_directory: plugins/
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: InMemoryStoreBackend
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: InMemoryStoreBackend
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: InMemoryStoreBackend
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+datasources:
+  dest_postgres:
+    class_name: Datasource
+    execution_engine:
+      class_name: SqlAlchemyExecutionEngine
+      connection_string: ${DEST_POSTGRES_CONN:-postgresql+psycopg2://postgres:postgres@localhost:5434/postgres}
+    data_connectors:
+      default_runtime_data_connector:
+        class_name: RuntimeDataConnector
+        batch_identifiers: [default_identifier]
+checkpoint_store_name: checkpoint_store

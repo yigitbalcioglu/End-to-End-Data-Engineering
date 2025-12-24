@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: public
+    database: {{ env_var('DEST_POSTGRES_DB', 'postgres') }}
+    schema: public
+    tables:
+      - name: orders
+
+models:
+  - name: stg_orders
+    description: "Staging view for orders synced into destination Postgres."
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['pending', 'processing', 'shipped', 'delivered', 'canceled']
+      - name: amount
+        tests:
+          - not_null

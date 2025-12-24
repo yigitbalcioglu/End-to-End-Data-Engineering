@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# Local volumes/data
+mysql_data/
+es_data/
+
+# OS
+.DS_Store
