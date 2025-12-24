@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  source_postgres:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512m
+  destination_postgres:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512m
+  elt_script:
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 256m
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  pg_backups:
+    external: false
